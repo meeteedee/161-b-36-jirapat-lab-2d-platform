@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -13,11 +14,20 @@ public class Character : MonoBehaviour
     
     protected Animator anim;
     protected Rigidbody2D rb;
-    
+
+    public void Initialize(int startHealth)
+    {
+        Health = startHealth;
+        Debug.Log($"{this.name} is Initialized Health : {this.Health}");
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+    }
+
     public void TakeDamage(int damage)
     {
         Health -= damage;
         Debug.Log($"{this.name} took damaged {damage} Current Health:{Health}");
+        IsDead();
     }
 
     public bool IsDead() 
