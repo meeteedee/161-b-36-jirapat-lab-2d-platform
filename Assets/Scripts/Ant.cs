@@ -1,4 +1,7 @@
+using System;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
+using FixedUpdate = Unity.VisualScripting.FixedUpdate;
 
 public class Ant : Enemy
 {
@@ -9,12 +12,19 @@ public class Ant : Enemy
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public override void Behavior()
     {
-        throw new System.NotImplementedException();
+        rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
     }
 
     void Start()
     {
         base.Initialize(20);
+        DamageHit = 20;
+        velocity = new Vector2(-1.0f, 0.0f);
+    }
+
+    private void FixedUpdate()
+    {
+        Behavior();
     }
 
     // Update is called once per frame
