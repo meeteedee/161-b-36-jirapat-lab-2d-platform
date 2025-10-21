@@ -10,7 +10,7 @@ public class Croccodile : Enemy
 
     void Start()
     {
-        base.Initialize(100);
+        base.Initialize(50);
     }
 
     // Update is called once per frame
