@@ -11,6 +11,7 @@ public class Croccodile : Enemy
         //set atk range and target
         atkRange = 6.0f;
         player = GameObject.FindFirstObjectByType<Player>();
+        
     }
  
     private void FixedUpdate()
