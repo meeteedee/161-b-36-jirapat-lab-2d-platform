@@ -168,8 +168,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 127783547214b864e809cf249dbecdf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1786757742}
+  <Bullet>k__BackingField: {fileID: 115806, guid: 40466c5ac40024bbca1e4b144cdf43c2, type: 3}
+  <ShootPoint>k__BackingField: {fileID: 690105651}
   atkRange: 0
-  player: {fileID: 0}
 --- !u!4 &18814824 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 448308, guid: c07db661138134f589f46b8510d57c9a, type: 3}
@@ -3413,6 +3415,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Bullet>k__BackingField: {fileID: 182108, guid: a5638a192258f4059b0e074542d33fbc, type: 3}
   <ShootPoint>k__BackingField: {fileID: 1660510784}
+  <ReloadTime>k__BackingField: 0
+  <WaitTime>k__BackingField: 0
 --- !u!4 &1786757747 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 485146, guid: 6dde6029886a24408b05eced6b5964a6, type: 3}

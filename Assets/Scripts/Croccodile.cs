@@ -1,9 +1,15 @@
 using UnityEngine;
 
-public class Croccodile : Enemy
+public class Croccodile : Enemy , IShootable
 {
-    [SerializeField] private float atkRange;
     public Player player; //target to atk
+    
+    [field: SerializeField] public GameObject Bullet { get; set; }
+    [field: SerializeField] public Transform ShootPoint { get; set; }
+     public float ReloadTime { get; set; }
+     public float WaitTime { get; set; }
+    
+    [SerializeField] private float atkRange ;
     void Start()
     {
         base.Initialize(50);
@@ -11,11 +17,14 @@ public class Croccodile : Enemy
         //set atk range and target
         atkRange = 6.0f;
         player = GameObject.FindFirstObjectByType<Player>();
-        
+
+        WaitTime = 0.0f;
+        ReloadTime = 5.0f;
     }
  
     private void FixedUpdate()
     {
+        WaitTime += Time.fixedDeltaTime;
         Behavior();
     }
     public override void Behavior()
@@ -28,8 +37,15 @@ public class Croccodile : Enemy
             Shoot();
         }
     }
+
+    
+
     public void Shoot() 
     {
-        Debug.Log($"{this.name} shoots rock to the {player.name}!");
+        anim.SetTrigger("Shoot");
+        var bullet = Instantiate(Bullet, ShootPoint.position, Quaternion.identity);
+        Rock rock = bullet.GetComponent<Rock>();
+        rock.InitWeapon(30, this);
+        WaitTime = 0;
     }
 }
