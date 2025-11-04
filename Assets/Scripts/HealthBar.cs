@@ -52,9 +52,9 @@ public class HealthBar : MonoBehaviour
             if (worldSpaceFollowCamera && mainCam != null)
             {
                 Vector3 camFwd = mainCam.transform.forward;
-                camFwd.z = 0; // 2D: ล็อกแกนลึก
+                camFwd.z = 0; 
                 if (camFwd.sqrMagnitude > 0.0001f)
-                    transform.up = camFwd; // ใช้ up หรือ forward ก็ได้ตามการวางแกนของ Canvas/RectTransform
+                    transform.up = camFwd; 
             }
         }
     }
@@ -70,7 +70,7 @@ public class HealthBar : MonoBehaviour
             fillImage.color = fillColorByPercent.Evaluate(t);
     }
 
-    // เผื่ออยากสลับ target ขณะรันไทม์ (เช่น health bar กลางจอสำหรับล็อกเป้าหมาย)
+   
     public void SetTarget(Character newTarget)
     {
         if (target == newTarget) return;

@@ -26,7 +26,6 @@ public abstract class Weapon : MonoBehaviour
         var character = other.GetComponent<Character>();
         if (character == null) return;
 
-        // กันโดนเจ้าของ
         if (Shooter is Component shooterComp)
         {
             var ownerChar = shooterComp.GetComponent<Character>();
