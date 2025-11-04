@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class Croccodile : Enemy , IShootable
 {
     public Player player; //target to atk
@@ -29,14 +28,15 @@ public class Croccodile : Enemy , IShootable
     }
     public override void Behavior()
     {
-        //find distance between Croccodile and Player
         Vector2 distance = transform.position - player.transform.position;
-        if (distance.magnitude <= atkRange)
+
+        if (distance.magnitude <= atkRange && WaitTime >= ReloadTime)
         {
             Debug.Log($"{player.name} is in the {this.name}'s atk range!");
             Shoot();
         }
     }
+
 
     
 

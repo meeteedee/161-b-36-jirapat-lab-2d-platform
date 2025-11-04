@@ -3,54 +3,54 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-
-    private int health;
-
+    [SerializeField] private int health;
     public int Health
     {
         get => health;
-        set => health = (value < 0) ? 0 : value;
+        private set
+        {
+            int clamped = Mathf.Max(0, value);
+            if (clamped == health) return;
+
+            health = clamped;
+            OnHealthChanged?.Invoke(health, MaxHealth);
+
+            if (health <= 0)
+            {
+                // สามารถใส่อนิเมชัน Die ได้ก่อน Destroy
+                Destroy(gameObject);
+            }
+        }
     }
-    
+
+    public int MaxHealth { get; private set; }
+
+    public event Action<int, int> OnHealthChanged;
+
     protected Animator anim;
     protected Rigidbody2D rb;
 
     public void Initialize(int startHealth)
     {
-        Health = startHealth;
-        Debug.Log($"{this.name} is Initialized Health : {this.Health}");
+        MaxHealth = Mathf.Max(1, startHealth);
+        health = MaxHealth;
+        OnHealthChanged?.Invoke(health, MaxHealth);
+
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        Debug.Log($"{name} is Initialized Health : {Health}/{MaxHealth}");
     }
 
     public void TakeDamage(int damage)
     {
-        Health -= damage;
-        Debug.Log($"{this.name} took damaged {damage} Current Health:{Health}");
-        IsDead();
+        if (damage <= 0) return;
+        Health = Health - damage;
+        Debug.Log($"{name} took damaged {damage} Current Health:{Health}/{MaxHealth}");
     }
 
-    public bool IsDead() 
+    public void Heal(int amount)
     {
-        if (Health <= 0)
-        {
-            Destroy(this.gameObject);
-            return true;
-        }
-        else {return false;}
-        
-
-        
-    }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (amount <= 0) return;
+        Health = Mathf.Min(Health + amount, MaxHealth);
     }
 }

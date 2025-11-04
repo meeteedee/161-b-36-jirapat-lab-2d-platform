@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Rock : Weapon
@@ -30,6 +29,16 @@ public class Rock : Weapon
     // Update is called once per frame
     void Update()
     {
-        
+        LimitVelocity();
+
     }
+    private void LimitVelocity()
+    {
+        float maxSpeed = 7f; 
+        if (rb.linearVelocity.magnitude > maxSpeed)
+        {
+            rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
+        }
+    }
+
 }

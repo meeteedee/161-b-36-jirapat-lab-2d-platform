@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-
 public class PlayerController : MonoBehaviour {
 
 	public float maxSpeed = 10f;

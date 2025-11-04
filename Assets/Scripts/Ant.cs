@@ -1,8 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using FixedUpdate = Unity.VisualScripting.FixedUpdate;
-
 public class Ant : Enemy
 {
     
