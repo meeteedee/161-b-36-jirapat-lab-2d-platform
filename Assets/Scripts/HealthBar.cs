@@ -7,20 +7,20 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private Character target;
 
     [Header("UI")]
-    [SerializeField] private Image fillImage;     // รูปแบบ Image ที่ใช้ fill (Image.type = Filled / Fill Method = Horizontal)
+    [SerializeField] private Image fillImage;     
     [SerializeField] private Image backgroundImage;
 
     [Header("Options")]
-    [SerializeField] private bool worldSpaceFollowCamera = true;  // ทำให้แถบหันหน้าหากล้องเสมอ (billboard)
+    [SerializeField] private bool worldSpaceFollowCamera = true;  
     [SerializeField] private Vector3 worldOffset = new Vector3(0, 1.2f, 0);
-    [SerializeField] private Gradient fillColorByPercent;          // (ไม่บังคับ) ไล่สีตามเปอร์เซ็นต์เลือด
+    [SerializeField] private Gradient fillColorByPercent;        
 
     private Camera mainCam;
 
     private void Awake()
     {
         if (target == null)
-            target = GetComponentInParent<Character>(); // auto-find ในพาเรนต์
+            target = GetComponentInParent<Character>(); 
 
         mainCam = Camera.main;
     }
@@ -30,7 +30,7 @@ public class HealthBar : MonoBehaviour
         if (target != null)
         {
             target.OnHealthChanged += HandleHealthChanged;
-            // sync ค่าเริ่มต้นทันที
+            
             HandleHealthChanged(target.Health, target.MaxHealth);
         }
     }
@@ -45,14 +45,12 @@ public class HealthBar : MonoBehaviour
     {
         if (target == null) return;
 
-        // ถ้าเป็น world-space bar ให้ลอยตามตำแหน่งตัวละคร + offset
         if (transform.parent != null && transform.parent == target.transform)
         {
             transform.position = target.transform.position + worldOffset;
 
             if (worldSpaceFollowCamera && mainCam != null)
             {
-                // billboard หันหน้าเข้าหากล้อง
                 Vector3 camFwd = mainCam.transform.forward;
                 camFwd.z = 0; // 2D: ล็อกแกนลึก
                 if (camFwd.sqrMagnitude > 0.0001f)

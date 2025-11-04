@@ -17,7 +17,6 @@ public class Character : MonoBehaviour
 
             if (health <= 0)
             {
-                // สามารถใส่อนิเมชัน Die ได้ก่อน Destroy
                 Destroy(gameObject);
             }
         }

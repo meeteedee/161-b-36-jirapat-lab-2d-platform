@@ -4,8 +4,7 @@ public class Ant : Enemy
     
     [SerializeField] Vector2 velocity;
     public Transform[] movePoint;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     public override void Behavior()
     {
         rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
@@ -14,7 +13,6 @@ public class Ant : Enemy
         {
             Flip();
         }
-        //move right และเกินขอบขวา
         if ( velocity.x > 0 && rb.position.x >= movePoint[1].position.x )
         {
             Flip();
@@ -23,8 +21,7 @@ public class Ant : Enemy
     
     public void Flip()
     {
-        velocity.x *= -1; //change direction of movement
-        //Flip the image
+        velocity.x *= -1; 
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
@@ -41,8 +38,7 @@ public class Ant : Enemy
     {
         Behavior();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         

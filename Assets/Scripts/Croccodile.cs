@@ -1,7 +1,7 @@
 using UnityEngine;
 public class Croccodile : Enemy , IShootable
 {
-    public Player player; //target to atk
+    public Player player; 
     
     [field: SerializeField] public GameObject Bullet { get; set; }
     [field: SerializeField] public Transform ShootPoint { get; set; }
@@ -13,7 +13,6 @@ public class Croccodile : Enemy , IShootable
     {
         base.Initialize(50);
         DamageHit = 30;
-        //set atk range and target
         atkRange = 6.0f;
         player = GameObject.FindFirstObjectByType<Player>();
 
